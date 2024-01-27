@@ -84,45 +84,44 @@ const File = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-4">
-        <Link to="/" className="text-blue-600 hover:text-blue-800">Back</Link>
-      </div>
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-black font-bold text-5xl mb-4">Upload image</h1>
-        <input
-          type="file"
-          id="avatar"
-          name="avatar"
-          accept="image/png, image/jpeg"
-          className="mb-4 file-input"
-          onChange={handleImage}
-        />
-        <h2 className="font-bold text-black text-2xl mb-4">Image show</h2>
-
-        {image && (
-          <figure className={`mb-4 ${filter}`}>
-            <img src={image} alt="Uploaded" className="max-w-xs md:max-w-lg" />
-          </figure>
-        )}
-
-        <select 
-          className="mb-4 bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="">Select a filter</option>
-          {filters.map((f) => (
-            <option key={f.name} value={f.class}>{f.name}</option>
-          ))}
-        </select>
-
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          onClick={download}
-        >
-          Download
-        </button>
+    <div className="min-h-screen bg-gradient-to-br from-green-400 to-blue-600 flex flex-col items-center justify-center p-4">
+      <div className="mb-4 max-w-lg w-full bg-white rounded-lg p-6 shadow-lg">
+        <Link to="/" className="text-blue-600 hover:text-blue-800 font-semibold">Back</Link>
+        <div className="flex flex-col items-center">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Upload Image</h1>
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+            className="file-input mb-4 border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500 transition duration-300"
+            onChange={handleImage}
+          />
+          {image && (
+            <div className="space-y-3">
+              <h2 className="text-2xl font-bold text-gray-800">Image Preview</h2>
+              <figure className={`${filter} max-w-xs md:max-w-lg`}>
+                <img src={image} alt="Uploaded" className="rounded-lg shadow-lg" />
+              </figure>
+              <select
+                className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+              >
+                <option value="">Select a Filter</option>
+                {filters.map((f) => (
+                  <option key={f.name} value={f.class}>{f.name}</option>
+                ))}
+              </select>
+              <button
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                onClick={download}
+              >
+                Download
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
